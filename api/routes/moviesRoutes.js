@@ -8,4 +8,8 @@
         .route("/rating:kMovies")
         .get(moviesController.getKRating)
 
+        app
+        .route("/year:year&genre:genre")
+        .get(moviesController.findByYearAndGenre)
+
     };

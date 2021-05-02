@@ -17,3 +17,23 @@ exports.getKRating = (req, res) => {
             res.status(200).json(movies);
     });
 };
+
+// findByYearAndGenre function - List movies by year and genre
+exports.findByYearAndGenre = (req, res) => {
+    year = req.params.year.substring(1);
+    genre = req.params.genre.substring(1);
+
+    pipeline = [{"$match": {"year": year}},
+                {"$match": 
+                    {"$expr": 
+                        {"$in": [genre, "$genres"]}
+                    }
+                }];
+    
+    Movie.aggregate(pipeline, (err, movies) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+            res.status(200).json(movies);
+    });
+};

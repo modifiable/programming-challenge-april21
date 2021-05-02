@@ -1,11 +1,18 @@
 'use strict'
 
+// Import DB Connection
+require("./config/dbConnection");
+
 // require express and bodyParser
 const  express = require("express");
 const  bodyParser = require("body-parser");
 
 // create express app
 const  app = express();
+
+//importing route
+var routes = require('./api/routes/moviesRoutes');
+routes(app);
 
 // define port to run express app
 const  port = process.env.PORT || 3000;
@@ -21,6 +28,6 @@ res.send("Hello World");
 
 // Listen to server
 app.listen(port, () => {
-
-console.log(`Server running at http://localhost:${port}`);
+    
+    console.log(`Server running at http://localhost:${port}`);
 });

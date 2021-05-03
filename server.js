@@ -10,6 +10,7 @@ const  bodyParser = require("body-parser");
 // create express app
 const  app = express();
 
+app.use(express.static('public'));
 //importing route
 var routes = require('./api/routes/moviesRoutes');
 routes(app);

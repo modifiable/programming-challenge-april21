@@ -1,52 +1,48 @@
 # Programming Challenge
 
-Congratulations on being selected to participate in our technical test. It consists of a programming challenge and it will address different skills. Read the instructions carefully and we wish you the best of luck.
+**Applicant:** Andrey Souza
 
-## Before You Start
+Source code of the application for the technical phase of the selection process for developer at SIDIA.
 
-Fork this repository and once you have finished your challenge, grant access to the Github user "kavlac". Upload all your deliverables to your forked repository. We will use it to evaluate your test.
+   This application is capable of:
+ 1. List the films in the database in descending order, taking the rating as a metric. 
+ 2. List films by release year and genre.
 
-## Introduction
+## Requirements to run
 
-We want you to develop a project that makes uses of the [MovieLens](https://grouplens.org/datasets/movielens/) dataset. It consists of three goals and the details on each one of them is given below.
+Have installed the following packages on the system:
 
-## Preparing the Data
+ - git
+ - nodejs and npm
 
-The first goal of this challenge is to obtain and prepare the data you will work with.
+## How to run
 
-In order to do so, you must download a [publicly available dataset](http://files.grouplens.org/datasets/movielens/ml-25m.zip). You can find the details about what data is stored and how it is structured in the [instructions](http://files.grouplens.org/datasets/movielens/ml-25m-README.html).
+ - **Install the dependencies**
+ Install the dependencies with the command `npm install`.
+ 
+ - **Run the application**
+ Run the application with the command `npm start` and access the port `http://localhost:3000`.
+ *Note: If the system asks for permission to run the application then:*
+	 - *Allow the application to run;*
+	 - *press `Ctrl+C` to cancel the current run;*
+	 - *and then run again with `npm start`.*
 
-Then, you are asked to write a program to read the input files for the dataset and create a database out of it. You can choose to use the database in memory, in files, or in a database management system, as long as you process and consume this data in the upcoming parts.
+## Technologies 
 
-## Making the Data Available
+### Data processing
+The data set data processing was done in *Python*, using the *Pandas* library, due to the ease in handling the data. The data is already processed and ready to be used, as it is stored online, but the data processing code can be found on the directory `helpers`.
+### Database
+This application uses *MongoDB Atlas* as a database. I chose this path because it is easier to work with fixed data and because the installation and execution of the application also becomes faster and easier.
+### API
+The API, as expected, was developed in JavaScript with the *Express* framework.
+### Frontend
+The frontend is a simple HTML + CSS. I chose this approach because it is sufficient for the application.
 
-The second goal of this challenge is to make the processed data available for consumption.
+## Some Screenshots
 
-To do such, you must implement a REST API and it should provide the following methods:
-- List movies by year and genre: given a year and a genre, we want to know what movies match the given year and are of the given genre;
-- List top K rated movies: given a number K, we want to know the best K rated movies in descending order.
+![Just started](https://i.imgur.com/CBBa1FJ.png)
+---
+![List by rating](https://i.imgur.com/HtoSgTV.png)
+---
+![List by year and genre](https://i.imgur.com/QBXVwdG.png)
 
-## Consuming the Data
-
-The third goal of this challenge is to consume the methods of the REST API.
-
-Thus, you are asked to implement a client application that accesses such an API. It must have a graphical interface to interact with users to consume the three methods above. It is up to you how to design the user interface, as long as it is usable.
-
-## Deliverables
-
-You must provide the following artifacts:
-- The source-code of the programs that you implemented;
-- A set of instructions on how to prepare the environment, build the programs, run each part of the challenge, and how to use your project;
-- Comments on what technologies and patterns you used and the reasons to do so, as well as the decisions you made throughout the challenge;
-- Any other artifact you find relevant for your overall evaluation.
-
-## Tips
-
-- Make sure your instructions are easy to follow and that each step works as expected;
-- Our main environment is Windows, so please make sure that your solution works on it;
-- If you want, you can show us how you can set up your project using Docker;
-- We suggest you implement the challenge using the following languages (you can use more than one of them if you want): C#, Java, and/or JavaScript;
-- Testing is more than welcome;
-- Show us everything you know about best practices in Git;
-- Think carefully about your code quality, in terms of maintainability, readability, and simplicity;
-- Do not overengineer your solution.

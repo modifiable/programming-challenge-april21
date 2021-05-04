@@ -7,13 +7,13 @@ var index = 0;
 var checkbox = document.getElementById("changeSearch");
 
 var inputYearAndGenre = `
-    <input type="text" placeholder="Type a Year" id="yearInput"  onkeypress="handle(event);">
-    <input type="text" placeholder="Type a Genre" id="genreInput"  onkeypress="handle(event);">
+    <input type="number" placeholder="Type a Year" id="yearInput" onkeypress="handle(event);">
+    <input type="text" placeholder="Type a Genre" id="genreInput" onkeypress="handle(event);">
     <button type="button" id="bttSearch" onclick="getInputValue();">Search</button>
     `
 
 var inputRating = `
-    <input type="text" placeholder="Type a number of Movies" id="ratingInput" onkeypress="handle(event);">
+    <input type="number" placeholder="Type a number of Movies" id="ratingInput" max="62000" onkeypress="handle(event);">
     <button type="button" id="bttSearch" onclick="getInputValue();">Search</button>
     `
 
@@ -52,20 +52,26 @@ function searchByYearAndGenre(year, genre){
     document.getElementById("loadingImg").style.visibility = "hidden";
     if(movies.length > 0){
         paginationMoviesNext();
-    }
+    }else{alert("Sorry! No movies were found. : /  Try another search."); }
 }
 
 function searchByRating(rating){
-    index = 0;
-    document.getElementById("movies").innerHTML = "";
-    xhttp.open("GET", "http://localhost:3000/rating:"+rating, false);
-    document.getElementById("loadingImg").style.visibility = "visible";
-    xhttp.send();
-    movies = JSON.parse(xhttp.responseText);
-    document.getElementById("loadingImg").style.visibility = "hidden";
-    if(movies.length > 0){
-        paginationMoviesNext();
+
+    if(parseInt(rating) > 62000){
+        alert("Don't have all that film!!!");
+    }else{
+        index = 0;
+        document.getElementById("movies").innerHTML = "";
+        xhttp.open("GET", "http://localhost:3000/rating:"+rating, false);
+        document.getElementById("loadingImg").style.visibility = "visible";
+        xhttp.send();
+        movies = JSON.parse(xhttp.responseText);
+        document.getElementById("loadingImg").style.visibility = "hidden";
+        if(movies.length > 0){
+            paginationMoviesNext();
+        }else{alert("Sorry! No movies were found. : /  Try another search."); }
     }
+
 }
 
 function changeuri(checkbox) {

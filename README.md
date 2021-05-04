@@ -18,14 +18,18 @@ Have installed the following packages on the system:
 ## How to run
 
  - **Install the dependencies**
+ 
  Install the dependencies with the command `npm install`.
  
  - **Run the application**
+ 
  Run the application with the command `npm start` and access the port `http://localhost:3000`.
+ 
  *Note: If the system asks for permission to run the application then:*
-	 - *Allow the application to run;*
-	 - *press `Ctrl+C` to cancel the current run;*
-	 - *and then run again with `npm start`.*
+ 
+  * - *Allow the application to run;*
+  * - *press `Ctrl+C` to cancel the current run;*
+  * - *and then run again with `npm start`.*
 
 ## Technologies 
 

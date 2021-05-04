@@ -3,122 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title> Movies API</title>
-        <link href="https://fonts.googleapis.com/css?family=Raleway" type="text/css" />
-        <link href="bootstrap.css" type="text/css" />
-        <link href="bootstrap-switch.css" type="text/css" />
-        <script src="jquery.js" type="text/js"></script>
-        <script src="bootstrap-switch.js" type="text/js"></script>
-        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="container">
             <hr>
-            <h1>List of Movies</h1>
+            <h1 id="title">Movies API</h1>
             <hr>
-            <div>
+            <div id="parameters">
                 <!-- Default switch -->
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="changeSearch" onchange="changeuri(this);"/>
-                    <label class="form-check-label" for="changeSearch"  id="switch"></label
-                    >
+                    <label class="form-check-label" for="changeSearch"  id="switch"></label>
                 </div>
                 <div id="inputs">
                 </div>
-                
-                <div class="row" id="movies">
+                <img src="loading.gif" id="loadingImg"/>
+            </div>
+            <div id="pages">
+                <div id="buttons">
+                    <button type="button" class="btn btn-primary" id="Preview" onclick="paginationMoviesBack();">Preview</button>
+                    <button type="button" class="btn btn-primary" id="Next" onclick="paginationMoviesNext();"">Next</button>
                 </div>
+            </div>
+            <div class="row" id="movies">
             </div>
         </div>
         <!--Our JS file-->
-        <script>
-
-            const xhttp = new XMLHttpRequest();
-            var rating;
-            var year;
-            var genre;
-            var checkbox = document.getElementById("changeSearch");
-
-            var inputYearAndGenre = `
-                <input type="text" placeholder="Type a Year" id="yearInput">
-                <input type="text" placeholder="Type a Genre" id="genreInput">
-                <button type="button" onclick="getInputValue();">Search</button>
-                `
-
-            var inputRating = `
-                <input type="text" placeholder="Type a number of Movies" id="ratingInput">
-                <button type="button" onclick="getInputValue();">Search</button>
-                `
-            
-            document.getElementById("inputs").innerHTML = document.getElementById("inputs").innerHTML + inputYearAndGenre;
-            document.getElementById('switch').innerHTML = 'Change to Search by Rating';
-
-            function getInputValue(){
-                // Selecting the input element and get its value 
-                if(document.getElementById("inputs").childNodes.length > 5){
-                    year = document.getElementById("yearInput").value;
-                    genre = document.getElementById("genreInput").value;
-                    searchByYearAndGenre(year,genre);
-                    
-                }else{
-                    rating = document.getElementById("ratingInput").value;
-                    searchByRating(rating);
-                    
-                }
-            }
-    
-            function searchByYearAndGenre(year, genre){
-                document.getElementById("movies").innerHTML = "";
-                xhttp.open("GET", "http://localhost:3000/year:"+year+"&genre:"+genre, false);
-                xhttp.send();
-                movies = JSON.parse(xhttp.responseText);
-                showData(movies);
-            }
-
-            function searchByRating(rating){
-                document.getElementById("movies").innerHTML = "";
-                xhttp.open("GET", "http://localhost:3000/rating:"+rating, false);
-                xhttp.send();
-                movies = JSON.parse(xhttp.responseText);
-                showData(movies);
-            }
-
-            function changeuri(checkbox) {
-                if(checkbox.checked == true){
-                    document.getElementById("movies").innerHTML = "";
-                    document.getElementById("inputs").innerHTML = "";
-                    document.getElementById("inputs").innerHTML = document.getElementById("inputs").innerHTML + inputYearAndGenre;
-                    document.getElementById('switch').innerHTML = 'Change to Search by Rating';
-                }else{
-                    document.getElementById("movies").innerHTML = "";
-                    document.getElementById("inputs").innerHTML = "";
-                    document.getElementById("inputs").innerHTML = document.getElementById("inputs").innerHTML + inputRating;
-                    document.getElementById('switch').innerHTML = 'Change to Search by Year and Genre';
-                }
-            }
-            
-            function showData(movies){
-                if (movies.length > 0){
-                    for (let movie of movies) {
-                        const x = `
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${movie.title}</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">${movie.year}</h6>
-        
-                                        <div>Rating: ${movie.rating}</div>
-                                        <div>Genres: ${movie.genres}</div>
-        
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-        
-                        document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + x;
-                    }
-                }
-            }
-        </script>
+        <script src="clientFunctions.js"></script>
     </body>
 </html>
